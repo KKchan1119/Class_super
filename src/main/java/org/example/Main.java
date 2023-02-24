@@ -2,62 +2,63 @@ package org.example;
 
 class Main {
     public static void main(String[] args) {
-        전사 a전사 = new 홍길동();
-        a전사.a무기 = new 활();
+        전사타입A a전사타입A = new 전사타입A();
+        a전사타입A.공격();
 
-        a전사.공격();
-        // 출력 => 홍길동이(가) 활(으)로 공격합니다.
+        전사타입B a전사타입B = new 전사타입B();
+        a전사타입B.공격();
 
-        a전사 = new 홍길순();
+        전사타입C a전사타입C = new 전사타입C();
+        a전사타입C.공격();
 
-        a전사.공격();
-        // 출력 => 홍길순이(가) 칼(으)로 공격합니다.
-
-        a전사.a무기 = new 창();
-        a전사.공격();
-        // 출력 => 홍길순이(가) 창(으)로 공격합니다.
+        전사타입D a전사타입D = new 전사타입D();
+        a전사타입D.공격();
+        a전사타입D.공격();
+        a전사타입D.a무기 = new 로켓런처();
+        a전사타입D.공격(); // 로켓이 발사됩니다.
     }
 }
-
-class 전사{
-    String 이름;
+abstract class 전사{
     무기 a무기;
-    public void 공격() {
-        a무기.작동(이름);
+    void 공격() {
+        a무기.작동();
     }
 }
-class 홍길동 extends 전사 {
-    홍길동(){
-        이름 = "홍길동";
-        this.a무기 = new 활();
+class 전사타입A extends 전사 {
+    전사타입A(){
+        a무기 = new 칼();
     }
 }
-class 홍길순 extends 전사{
-
-    홍길순(){
-        이름 = "홍길순";
-        this.a무기 = new 칼();
+class 전사타입B extends 전사타입A {
+    전사타입B(){
+        a무기 = new 칼();
     }
 }
-class 무기{
-    String 무기명;
-    void 작동(String 사용자명){
-        System.out.println(사용자명 + "(이)가" + 무기명 + "으로 공격합니다");
-
+class 전사타입C extends 전사 {
+    전사타입C(){
+        a무기 = new 칼();
     }
+}
+class 전사타입D extends 전사타입C {
+    전사타입D(){
+        a무기 = new 칼();
+    }
+}
+abstract class 무기{
+    abstract void 작동();
 }
 class 칼 extends 무기{
-    칼(){
-        무기명 = "칼";
+    void 작동(){
+        System.out.println("칼로 공격");
     }
 }
 class 활 extends 무기{
-    활(){
-        무기명 = "활";
+    void 작동(){
+        System.out.println("활로 공격");
     }
 }
-class 창 extends 무기{
-    창(){
-        무기명 = "창";
+class 로켓런처 extends 무기{
+    void 작동(){
+        System.out.println("로켓런쳐로 공격");
     }
 }
